@@ -131,9 +131,17 @@
                                             </li>
                                         </ul>
                                     </li><!--/.dropdown-->
+                                    <?php  
+                                     if(isset($_SESSION['user'])){
+                                    ?>
                                     <li class="nav-setting">
-                                        <a href="#" "><i class="fa-solid fa-right-to-bracket " style="font-size=40px"></i></a>
+                                        <a href="?p=h&a=Logout" ><i class="fa-solid fa-right-to-bracket " style="font-size=40px"></i></a>
                                     </li>
+                                    <?php }else{ ?>
+                                    <li class="nav-setting">
+                                        <a href="?p=l" ><i class="fa-solid fa-user"></i></a>
+                                    </li>
+                                    <?php } ?>
                                 </ul>
                             </div><!--/.attr-nav-->
                             <!-- End Atribute Navigation -->
@@ -155,6 +163,11 @@
                                     <li><a href="?p=ar">new arrival</a></li>
                                     <li><a href="?p=f" class="clr">features</a></li>
                                     <li><a href="?p=b">blog</a></li>
+                                    <?php  
+                                     if(isset($_SESSION['user'])){
+                                    ?>
+                                    <li><a href="?p=a">Dashboard</a></li>
+                                    <?php } ?>
                                     <li><a href="?p=c">contact</a></li>
                                 </ul><!--/.nav -->
                             </div><!-- /.navbar-collapse -->

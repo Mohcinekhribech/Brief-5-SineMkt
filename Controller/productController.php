@@ -2,6 +2,7 @@
 require_once 'Model/ProductModel.php';
 class ProductController {
     private $post;
+    private $type;
     function addPic(){
         if(isset($_FILES['productPic'])){
             $picname=$_FILES['productPic']['name'];
@@ -33,6 +34,7 @@ class ProductController {
            $this->post=[
            'productName'=> $_POST['productName'],
            'productPrice'=> $_POST['productPrice'],
+           'productType'=> $_POST['productType'],
            'productPic'=> $this->addPic()
         ];
         $add=new productModel;
@@ -77,7 +79,9 @@ class ProductController {
     }
     function getProducts() {
         $get = new productModel;
-        return $get->getProductsFromDb();
+        if($_GET['p']=='ar') $this->type='New Arrivals';
+        if($_GET['p']=='f') $this->type='Features';
+        return $get->getProductsFromDb($this->type);
     }
 }
 

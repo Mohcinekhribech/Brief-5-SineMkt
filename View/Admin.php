@@ -45,13 +45,20 @@
 		<h3 class="size">Add Product</h3><br>
 		 <form action="?a=add&p=a" method="post" enctype="multipart/form-data">
                 <label>product Name :</label><br>
-				<input class="inputA" type="text" name="productName" placeholder="Product Name">
+				<input class="inputA" type="text" name="productName" required placeholder="Product Name">
 				<br>
                 <label>product Price :</label><br>
-				<input class="inputA" type="text" name="productPrice" placeholder="Product Price">
+				<input class="inputA" type="text" name="productPrice" required placeholder="Product Price">
+				<br>
+				<label>product Type :</label><br>
+				<select class="inputA" name="productType" required name="Type" id="">
+					<option value="">Type</option>
+					<option value="New Arrivals">New Arrivals</option>
+					<option value="Features">Features</option>
+				</select>
 				<br>
                 <label>product image :</label><br>
-                <input class="inputA " type="file" name="productPic" id="">
+                <input class="inputA " required type="file" name="productPic" id="">
 				<input class="inputA" style="background-color:#e99c2e; color:white;" name="submit" type="submit" class="Envoyer" value="Envoyer">
 		 </form>
 	    </section>

@@ -4,7 +4,7 @@ class productModel {
     private $posts;
     public function addProductToDb($post){
         $conn=connect_to_db();
-        $stmt=$conn->query("INSERT INTO product (productName,productPrice,productPic) VALUES ('".$post['productName']."','".$post['productPrice']."','".$post['productPic']."')");
+        $stmt=$conn->query("INSERT INTO product (productName,productPrice,productType,productPic) VALUES ('".$post['productName']."','".$post['productPrice']."','".$post['productType']."','".$post['productPic']."')");
     }
     function selectFromDb($element,$id){
         $conn=connect_to_db();
@@ -12,9 +12,13 @@ class productModel {
         $result=$stmt->fetch();
         return $result;
     }
-    public function getProductsFromDb(){
+    public function getProductsFromDb($type){
         $conn=connect_to_db();
-        $stmt=$conn->query("select * from product;");
+        if($type){
+            $stmt=$conn->query("select * from product where productType='$type';");
+        }else{
+            $stmt=$conn->query("select * from product;");
+        }
         $result=$stmt->fetchAll();
         return $result;
     }
@@ -25,9 +29,9 @@ class productModel {
     public function updateProduitInDb($post,$id,$bool){
         $conn=connect_to_db();
         if($bool){
-             $stmt=$conn->query("UPDATE product SET productName='".$post['productName']."',productPrice=".$post['productPrice']." , productPic='".$post['productPic']."' where productId=$id;");
+             $stmt=$conn->query("UPDATE product SET productName='".$post['productName']."',productType='".$post['productType']."',productPrice=".$post['productPrice']." , productPic='".$post['productPic']."' where productId=$id;");
         }else{
-            $stmt=$conn->query("UPDATE product SET productName='".$post['productName']."',productPrice=".$post['productPrice']." where productId=$id;");
+            $stmt=$conn->query("UPDATE product SET productName='".$post['productName']."',productType='".$post['productType']."',productPrice=".$post['productPrice']." where productId=$id;");
         }  
     }
 }
